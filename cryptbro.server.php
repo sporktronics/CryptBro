@@ -92,7 +92,7 @@ function saveBro($bro, $id, $dir) {
 }
 
 function save($message, $expires, $to) {
-  global $ssrpc, $auth;
+  global $ssrpc, $auth, $config;
 
   if (!empty($message)) {
 
@@ -121,7 +121,7 @@ function save($message, $expires, $to) {
 	    return false;
 	  } else {
 	    $auth->emailToUser($to, $config['adminEmail'], 'New CryptBro message', 
-			   "Dear $user,
+			   "Dear $to,
 
 You have a new CryptBro message! You can check your messages at
 $config[url]#inbox .
