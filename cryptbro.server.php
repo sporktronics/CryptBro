@@ -4,7 +4,7 @@ require('ssauth.php');
 require('ssrpc.server.php');
 
 $config['adminEmail'] = 'CryptBro <admin@cryptbro.com>';
-$config['url'] = 'https://cryptbro.com/new/';
+$config['url'] = 'https://cryptbro.com/';
 
 function getNewId() {
   return dec2base62(round(microtime(true)*10000));
@@ -303,10 +303,7 @@ if ($request = $ssrpc->getData()) {
 	break;
       }
     }
-  }
-  
- } else {
-  getExpired();
- }
+  }  
+}
 
 ?>

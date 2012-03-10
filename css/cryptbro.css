@@ -104,7 +104,7 @@ div[data-role='footer'] .ui-btn-text {
 }
 
 .ui-icon-loading {
-	background: url(images/ajax-loader.gif);
+	background: url('../images/ajax-loader.gif');
 	background-size: 46px 46px;
 }
 .ui-loading .ui-loader { display: block; }
