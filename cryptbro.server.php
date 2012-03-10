@@ -38,7 +38,7 @@ function register($user, $pass, $email) {
 			   "Dear $user,
 
 Thanks for signing up at $config[url] ! You'll now get emails whenever
-someone leaves leave you a message.
+someone leaves you a message.
 
 Signed,
 CryptBro Admin");
@@ -115,13 +115,12 @@ function save($message, $expires, $to) {
 	  $bro['to'] = $to;
           $saveDir = $auth->getDirForUser($bro['from']);
 	  $toDir = $auth->getDirForUser($to);
-	  $toInfo = $auth->getUser($to);
 
 	  if (!saveBro($bro, $id, $toDir)) {
 	    $ssrpc->error('save', "Could not save message");
 	    return false;
 	  } else {
-	    $auth->emailToUser($toInfo->email, $config['adminEmail'], 'New CryptBro message', 
+	    $auth->emailToUser($to, $config['adminEmail'], 'New CryptBro message', 
 			   "Dear $user,
 
 You have a new CryptBro message! You can check your messages at
