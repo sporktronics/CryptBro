@@ -1,0 +1,126 @@
+div#version {
+    position: absolute !important;
+    bottom: 0px;
+    right: 0px;
+    display: inline-block;
+    margin: 3px;
+    font-size: 0.8em;
+}
+
+body, html {
+    height 100%;
+}
+
+.ui-body-a {
+    border: 0px;
+}
+
+.ui-loader h1 {
+    text-shadow: none;
+}
+
+body.loading, html.ui-mobile-rendering body {
+    height: 100%;
+    background: #f0f0f0
+    url('../images/cryptbro.loading.png') center no-repeat;
+}
+
+body.loading * {
+    display: none;
+}
+
+div#mainheader div#headercontainer {
+    height: 40px;
+    background: url('../images/cryptbro.png') center no-repeat;
+}
+
+div#mainheader h1 {
+    display: none;
+}
+
+input.ui-input-text, textarea.ui-input-text {
+    background: white;
+    color: black !important;
+    width: 95% !important;
+    margin: 3px auto;
+}
+
+textarea#message {
+    margin-bottom: 50px;
+}
+
+/*
+div#footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+}*/
+
+div[data-role="header"], div[data-role="navbar"], div[data-role="content"], div[data-role="footer"] {
+    max-width: 640px;
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#inboxmessages ul {
+    max-width: 645px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div[data-role="fieldcontain"]:last-child {
+    padding: 0px;
+}
+
+input[placeholder], [placeholder], *[placeholder] {
+    text-shadow: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.half-width-buttons {
+    width: 100%;
+    text-align: center; 
+}
+
+.half-width-buttons .ui-btn {
+    display: inline-block;
+    width: 49%;
+}
+
+.full-width-buttons .ui-btn {
+    display: block;
+    margin-left: 1em;
+    margin-right: 1em;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+div[data-role='footer'] .ui-btn-text {
+    font-size: 1.3em;
+}
+
+.ui-icon-loading {
+	background: url(images/ajax-loader.gif);
+	background-size: 46px 46px;
+}
+.ui-loading .ui-loader { display: block; }
+.ui-loader { display: none; z-index: 9999999; position: fixed; top: 50%; box-shadow: 0 1px 1px -1px #fff; left: 50%; border:0; }
+.ui-loader-default { background: none; opacity: .18; width: 46px; height: 46px; margin-left: -23px; margin-top: -23px; }
+.ui-loader-verbose { width: 200px; opacity: .88; height: auto; margin-left: -110px; margin-top: -43px; padding: 10px; }
+.ui-loader-default h1 { font-size: 0; width: 0; height: 0; overflow: hidden; }
+.ui-loader-verbose h1 { font-size: 16px; margin: 0; text-align: center; }
+.ui-loader .ui-icon { background-color: #000; display: block; margin: 0; width: 44px; height: 44px; padding: 1px; -webkit-border-radius: 36px; -moz-border-radius: 36px; border-radius: 36px; }
+.ui-loader-verbose .ui-icon { margin: 0 auto 10px; opacity: .75; }
+.ui-loader-textonly { padding: 15px; margin-left: -115px;  }
+.ui-loader-textonly .ui-icon { display: none; }
+.ui-loader-fakefix { position: absolute; }
+
+label {
+    width: 200px !important;
+    line-height: 40px !important;
+    margin-left: 10px !important;
+}

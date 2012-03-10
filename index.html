@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>CryptBro</title>
+
+<!--    <link rel="stylesheet" href="./css/jquery.mobile.structure-1.0.1.min.css" /> -->
+    <link rel="stylesheet" href="./css/jquery.mobile.structure-1.1.0-rc.1.min.css" />
+    <link rel="stylesheet" href="./css/cryptbro.jquerymobile.css" />
+    <link rel="stylesheet" href="./css/cryptbro.css" />
+
+    <link rel="apple-touch-icon" href="./css/images/cryptbro.icon.png" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+
+    <script src="./js/head.load.min.js"></script>
+    <script type="text/javascript">
+
+      head.js(
+      "./js/jquery-1.7.1.min.js",
+      "./js/jquery.mobile-1.1.0-rc.1.min.js",
+      "./js/crypto-deflate.js",
+      "./js/ssrpc.client.min.js",
+      "./js/cryptbro.min.js"
+      );
+
+    </script>
+
+  </head>
+
+  <body class="loading">
+
+    <div data-role="page" data-theme="a" id="message">
+      
+      <!--header-->
+
+      <div data-role="header" id="mainheader">
+	
+	<div id="headercontainer">
+	  <h1>CryptBro</h1>  
+	</div>
+	
+	<a href="javascript:CryptBro.ui.page('login')" data-theme="a"
+	   data-transition="fade" class="login ui-btn-left"><span class="loginbutton">Login</span></a>
+	
+	<a href="javascript:CryptBro.ui.page('help')" data-icon="info" data-theme="b"
+	   data-transition="fade" class="help ui-btn-right">Help</a>
+	
+      </div>
+
+      <div data-role="navbar" class="loggedout">
+	<ul>
+	  <li><a href="javascript:CryptBro.ui.page('message')" class="message" data-transition="none" data-theme="b">Message</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('options')" class="options" data-transition="none">Options</a></li>
+	</ul>
+      </div>
+      <div data-role="navbar" class="loggedin">
+	<ul>
+	  <li><a href="javascript:CryptBro.ui.page('message')" class="message" data-transition="none" data-theme="b">Message</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('options')" class="options" data-transition="none">Options</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('inbox')" class="inbox" data-transition="none">Inbox</a></li>
+	</ul>
+      </div>
+      
+      <!--end header-->
+
+      <div data-role="content" >
+	
+	<div data-role="controlgroup" data-type="horizontal" class="half-width-buttons" id="cryptmethod">
+	  <button data-theme="b" id="encrypt">Encrypt</button>
+	  <button data-theme="a" id="decrypt">Decrypt</button>
+	</div>
+	
+	<form id="crypt" action="" data-ajax="false">
+	  
+	  <div>
+	    <label for="key" class="ui-hidden-accessible">Key</label>
+	    <input type="password" id="key" name="key" placeholder="Key" />    
+	  </div>
+	  <div class="loggedin">
+	    <label for="to" class="ui-hidden-accessible">To (leave blank for anonymous)</label>
+	    <input type="text" id="to" name="to" placeholder="To (leave blank for anonymous)" />    
+	  </div>
+	  <div>
+	    <label for="message" class="ui-hidden-accessible">Message</label>
+	    <textarea name="message" placeholder="Message"
+		      id="message"></textarea>
+	  </div>
+	  
+	</form>
+	
+      </div>
+      
+      <div data-role="footer" data-position="fixed" id="footer">
+	<div class="ui-grid-a full-width-buttons">
+	  <div class="ui-block-a"><button data-theme="c" data-mini="false" id="crypt">Crypt</button></div>
+	  <div class="ui-block-b"><button data-theme="a" data-block="true" id="reset">Reset</button></div>
+	</div>
+	
+      </div>
+    </div>
+    
+    <!--end #message-->
+
+    <div data-role="page" data-theme="a" id="options">
+      
+      <!--header-->
+
+      <div data-role="header" id="mainheader">
+	
+	<div id="headercontainer">
+	  <h1>CryptBro</h1>  
+	</div>
+	
+	<a href="javascript:CryptBro.ui.page('login')" data-theme="a" class="login ui-btn-left"><span class="loginbutton">Login</span></a>
+	
+	<a href="javascript:CryptBro.ui.page('help')" data-icon="info" data-theme="b" class="help ui-btn-right">Help</a>
+	
+      </div>
+
+      <div data-role="navbar" class="loggedout">
+	<ul>
+	  <li><a href="javascript:CryptBro.ui.page('message')" class="message" data-transition="none">Message</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('options')" class="options" data-transition="none" data-theme="b">Options</a></li>
+	</ul>
+      </div>
+      <div data-role="navbar" class="loggedin">
+	<ul>
+	  <li><a href="javascript:CryptBro.ui.page('message')" class="message" data-transition="none">Message</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('options')" class="options" data-transition="none" data-theme="b">Options</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('inbox')" class="inbox" data-transition="none">Inbox</a></li>
+	</ul>
+      </div>
+      
+      <!--end header-->
+
+      <div data-role="content" >
+	
+	<div data-role="fieldcontain">
+	  
+	  <label for="save">Save messages on server?</label>
+	  <select name="save" id="save" data-inline="true" data-role="slider">
+	    <option value="no">no</option>
+	    <option value="yes" selected="selected">yes</option>
+	  </select> 
+	  
+	</div>
+
+	<div data-role="fieldcontain">
+
+	  <label for="expire">Messages expire in:</label>
+
+	  <select name="expire" id="expire">
+	    <option value="3600">1 hour</option>
+	    <option value="86400">1 day</option>
+	    <option value="259200" selected="selected">3 days</option>
+	    <option value="604800">1 week</option>
+	    <option value="2592000">30 days</option>
+	    <option value="-1">Never</option>
+	  </select>
+	  
+	</div>
+
+      </div>
+
+    </div>
+
+    <!--end #options-->
+    
+    <div data-role="page" data-theme="a" id="inbox">
+      
+      <!--header-->
+
+      <div data-role="header" id="mainheader">
+	
+	<div id="headercontainer">
+	  <h1>CryptBro</h1>  
+	</div>
+	
+	<a href="javascript:CryptBro.ui.page('login')" data-theme="a" class="login ui-btn-left"><span class="loginbutton">Login</span></a>
+	
+	<a href="javascript:CryptBro.ui.page('help')" data-icon="info" data-theme="b" class="help ui-btn-right">Help</a>
+	
+      </div>
+
+      <div data-role="navbar" class="loggedout">
+	<ul>
+	  <li><a href="javascript:CryptBro.ui.page('message')" class="message" data-transition="none">Message</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('options')" class="options" data-transition="none">Options</a></li>
+	</ul>
+      </div>
+      <div data-role="navbar" class="loggedin">
+	<ul>
+	  <li><a href="javascript:CryptBro.ui.page('message')" class="message" data-transition="none">Message</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('options')" class="options" data-transition="none">Options</a></li>
+	  <li><a href="javascript:CryptBro.ui.page('inbox')" class="inbox" data-transition="none" data-theme="b">Inbox</a></li>
+	</ul>
+      </div>
+      
+      <!--end header-->
+
+      <div data-role="content" >
+
+	<div id="inboxmessages"></div>
+
+      </div>
+
+    </div>
+
+    <!--end #inbox-->
+
+    <div data-role="dialog" id="login" data-theme="a">
+
+      <div data-role="header">
+	<h1>Login</h1>	
+      </div>
+
+      <div data-role="content">
+
+	<div class="center">
+	  <p>Don't have an account yet?</p>
+	  <a href="javascript:CryptBro.ui.page('register')" data-role="button" data-theme="b">Register!</a>
+	</div>
+
+        <form id="login" action="" data-ajax="false">
+	  <div data-role="fieldcontain">
+	    <div>
+              <label for="username" class="ui-hidden-accessible">Username</label>
+              <input type="text" id="username" name="username" placeholder="Username" />
+	    </div>
+	    <div>
+              <label for="password" class="ui-hidden-accessible">Password</label>
+              <input type="password" id="password" name="password" placeholder="Password" />
+	    </div>
+          </div>
+	  <div data-role="fieldcontain">
+	    <input type="submit" value="Login" id="loginbutton" />
+	  </div>
+	  
+	</form>
+
+      </div>
+
+    </div>
+    
+    <!--end #login-->
+
+    <div data-role="dialog" id="register" data-theme="a">
+
+      <div data-role="header">
+	<h1>Register</h1>	
+      </div>
+
+      <div data-role="content">
+
+        <form id="register" action="" data-ajax="false">
+	  <div data-role="fieldcontain">
+	    
+	    <p>Registration is free. It allows you to leave messages
+	    for other users and be notified when they leave messages
+	    for you.</p>
+	    
+	    <div>
+              <label for="rusername" class="ui-hidden-accessible">Username</label>
+              <input type="text" id="rusername" name="rusername" placeholder="Username" />
+	    </div>
+	    <div>
+              <label for="password1" class="ui-hidden-accessible">Password</label>
+              <input type="password" id="password1" name="password1" placeholder="Password" />
+	    </div>
+	    <div>
+              <label for="password2" class="ui-hidden-accessible">(again)</label>
+              <input type="password" id="password2" name="password2" placeholder="(again)" />
+	    </div>
+	    <div>
+              <label for="email" class="ui-hidden-accessible">Email address</label>
+              <input type="text" id="email" name="email" placeholder="Email address" />
+	    </div>
+          </div>
+	  <div data-role="fieldcontain">
+	    <input type="submit" value="Register" id="registerbutton" />
+	  </div>
+	  
+	</form>
+
+      </div>
+
+    </div>
+    
+    <!--end #register-->
+    
+    <div data-role="page" id="help" data-theme="a">
+      
+      <div data-role="header">
+	<h1>CryptBro Help</h1>
+      </div>
+      
+      <div data-role="content" data-theme="a">
+	<h2>What is CryptBro?</h2>
+	
+	<p>
+	  CryptBro is a tool for sharing encrypted messages. All
+	  encryption is performed on your own computer using the
+	  <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a>
+	  encryption algorithm, used by the US Government and SSL
+	  servers everywhere for secure communications. You can be
+	  quite sure no one but the intended recipient can read your
+	  message, as long as common-sense security protocols are
+	  followed.
+	</p>
+	
+	<h2>How does it work?</h2>
+	
+	<p>
+	  It's quite simple. There are two modes of operation, Encrypt
+	  and Decrypt. To encrypt a message, click Encrypt, pick a
+	  passphrase for your shared key, type your message, and click
+	  Crypt. Your message is first encrypted, then the encrypted
+	  message is sent to the server to be saved. You are then
+	  given a URL which you can send to the recipient where they
+	  can read the message.
+	</p>
+	
+	<p>
+	  When your recipient opens the link you've sent them, they
+	  are shown the encrypted text. They will then type the key
+	  you've shared with them, and click Crypt.
+	</p>
+
+	<p>
+	  You also have the option of registering. If you do so,
+	  you'll be able to send and receive messages with other users
+	  without needing to share links. Simply have them check their
+	  Inbox.
+	</p>
+	
+	<h2>
+	  How can I be sure it's secure? Are you sure nobody can read
+	  my message?
+	</h2>
+	
+	<p>
+	  Nothing is transmitted to the server in plaintext. Because
+	  all encryption is performed on your own computer, you can be
+	  sure the message is as secure as your computer is, as long
+	  as common-sense security protocols are followed.
+	</p>
+	
+	<p>
+	  To know if your message is secure, start by asking yourself
+	  these questions:
+	</p>
+	
+	<ul>
+	  <li>"Is my key based on a dictionary word or something easy
+	    to guess?"</li>
+	  <li>"Are there any spyware or keyloggers on my system?"</li>
+	  <li>"Could anyone have access to the key that shouldn't?"</li>
+	</ul>
+	
+	<p>
+	  Answering negatively to these and perhaps other questions
+	  should assure you of your message's security.
+	</p>
+	
+	<h2>What's the deal with logging in? What info do you want from me?</h2>
+
+	<p>
+	  We don't want any of your info! Logging in is purely
+	  optional and only serves to facilitate sharing messages
+	  between users. If you choose to register, you'll enter a
+	  username, password, and email address. We don't verify the
+	  address. We send you a message when you join and when
+	  another user sends you a message so you know to pick it up.
+	</p>
+
+	<h2>What's really going on under the hood?</h2>
+	
+	<p>
+	  Once you've entered your key and message and submit the
+	  form, CryptBro takes the key
+	  and <a href="http://en.wikipedia.org/wiki/Key_stretching">stretches</a>
+	  it using
+	  the <a href="http://en.wikipedia.org/wiki/PBKDF2">PBKDF2</a>
+	  algorithm. With this key, it then makes
+	  an <a href="http://en.wikipedia.org/wiki/HMAC">HMAC</a>
+          <a href="http://en.wikipedia.org/wiki/Hash_function">hash</a>
+	  of the message. Finally, the message is AES encrypted. The
+	  encrypted message, the HMAC hash, and the
+	  <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>
+	  for the stretched key are rolled up together, and sent to
+	  the server for storage (if the user does not disable
+	  server-side storage).
+	</p>
+	
+	<p>
+	  On the decryption side, CryptBro takes the rolled-up
+	  message, gets the salt, and stretches the key to obtain the
+	  same stretched key it was encrypted with. It then makes an
+	  HMAC hash and checks it against the original hash; this is
+	  checks that the user supplied the correct key. If the hash
+	  is right, the message is decrypted and displayed.
+	</p>
+	
+	<a href="javascript:CryptBro.ui.doReset();" data-role="button" data-icon="check">Back to CryptBro</a>
+	
+      </div>
+      
+    </div>
+
+    <!--end #help-->
+    
+    <div id="version">CryptBro</version>
+
+  </body>
+  
+</html>
